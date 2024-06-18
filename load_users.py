@@ -16,9 +16,9 @@ def load_users(filename, table, user_type):
             name, username, password = line.strip().split()
             hashed_password = generate_password_hash(password)
             if user_type == 'student':
-                cursor.execute("INSERT IGNORE INTO students (name, rollnumber, password) VALUES (%s, %s)", (name, username, hashed_password))
+                cursor.execute("INSERT IGNORE INTO students (name, rollnumber, password) VALUES (%s, %s, %s)", (name, username, hashed_password))
             elif user_type == 'professor':
-                cursor.execute("INSERT IGNORE INTO professors (name, subject, password) VALUES (%s, %s)", (name, username, hashed_password))
+                cursor.execute("INSERT IGNORE INTO professors (name, subject, password) VALUES (%s, %s, %s)", (name, username, hashed_password))
 
     conn.commit()
     cursor.close()
