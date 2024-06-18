@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        Attendance for {{ subject }}
+                    </div>
+                    <div class="card-body">
+                        <p>Total Classes: {{ total_classes }}</p>
+                        <p>Attendance Percentage: {{ attendance_percentage }}%</p>
+                        <h5>Absent Dates</h5>
+                        <ul>
+                            {% for date in absent_dates %}
+                                <li>{{ date }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

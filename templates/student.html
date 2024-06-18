@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        Student Dashboard
+                    </div>
+                    <div class="card-body">
+                        <h5>Welcome, {{ rollnumber }}</h5>
+                        <form action="/student/{{ subject }}" method="get">
+                            <div class="form-group">
+                                <label for="subject">Select Subject</label>
+                                <select name="subject" id="subject" class="form-control">
+                                    {% for subject in subjects %}
+                                        <option value="{{ subject[0] }}">{{ subject[0] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">View Attendance</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professor Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        Professor Dashboard
+                    </div>
+                    <div class="card-body">
+                        <h5>Welcome, {{ subject }}</h5>
+                        <form action="/professor/mark_attendance" method="post">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" id="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="absentees">Absentees (last 2 digits of roll numbers, separated by commas)</label>
+                                <input type="text" name="absentees" id="absentees" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Mark Attendance</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
