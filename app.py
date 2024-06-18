@@ -48,10 +48,13 @@ def student_dashboard():
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT subject FROM professors")
+        cursor.execute("SELECT name FROM students WHERE rollnumber = 'session['username']'")
+        result = cursor.fetchone()
+        name = result[0]
         subjects = cursor.fetchall()
         cursor.close()
         conn.close()
-        return render_template('student.html', rollnumber=session['username'], subjects=subjects)
+        return render_template('student.html', rollnumber=session['username'], subjects=subjects, name=name)
     return redirect(url_for('index'))
 
 @app.route('/student/<subject>')
@@ -73,7 +76,10 @@ def view_attendance(subject):
 @app.route('/professor')
 def professor_dashboard():
     if 'user_type' in session and session['user_type'] == 'professor':
-        return render_template('professor.html', subject=session['username'])
+        cursor.execute("SELECT name FROM professors WHERE subject = ?", (session['username'],))
+        result = cursor.fetchone()
+        name = result[0]
+        return render_template('professor.html', subject=session['username'], name=name)
     return redirect(url_for('index'))
 
 @app.route('/professor/mark_attendance', methods=['POST'])
