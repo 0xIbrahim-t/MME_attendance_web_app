@@ -78,7 +78,7 @@ def professor_dashboard():
     if 'user_type' in session and session['user_type'] == 'professor':
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT name FROM professors WHERE subject = ?", (session['username'],))
+        cursor.execute("SELECT name FROM professors WHERE subject = %s", (session['username'],))
         result = cursor.fetchone()
         name = result[0]
         return render_template('professor.html', subject=session['username'], name=name)
