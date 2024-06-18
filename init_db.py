@@ -16,6 +16,7 @@ cursor.execute("USE attendance_app")
 # Create the students table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS students (
+        name VARCHAR(50),
         rollnumber VARCHAR(20) PRIMARY KEY,
         password VARCHAR(255)
     )
@@ -24,6 +25,7 @@ cursor.execute("""
 # Create the professors table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS professors (
+        name VARCHAR(50),
         subject VARCHAR(50) PRIMARY KEY,
         password VARCHAR(255)
     )
