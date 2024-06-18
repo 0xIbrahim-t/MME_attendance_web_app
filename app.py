@@ -47,10 +47,10 @@ def student_dashboard():
     if 'user_type' in session and session['user_type'] == 'student':
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT subject FROM professors")
-        cursor.execute("SELECT name FROM students WHERE rollnumber = %s", (session['username']))
+        cursor.execute("SELECT name FROM students WHERE rollnumber = %s", (session['username'],))
         result = cursor.fetchone()
         name = result[0]
+        cursor.execute("SELECT subject FROM professors")
         subjects = cursor.fetchall()
         cursor.close()
         conn.close()
