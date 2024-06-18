@@ -13,12 +13,12 @@ def load_users(filename, table, user_type):
 
     with open(filename, 'r') as file:
         for line in file:
-            username, password = line.strip().split()
+            name, username, password = line.strip().split()
             hashed_password = generate_password_hash(password)
             if user_type == 'student':
-                cursor.execute("INSERT IGNORE INTO students (rollnumber, password) VALUES (%s, %s)", (username, hashed_password))
+                cursor.execute("INSERT IGNORE INTO students (name, rollnumber, password) VALUES (%s, %s)", (name, username, hashed_password))
             elif user_type == 'professor':
-                cursor.execute("INSERT IGNORE INTO professors (subject, password) VALUES (%s, %s)", (username, hashed_password))
+                cursor.execute("INSERT IGNORE INTO professors (name, subject, password) VALUES (%s, %s)", (name, username, hashed_password))
 
     conn.commit()
     cursor.close()
@@ -26,4 +26,3 @@ def load_users(filename, table, user_type):
 
 load_users('students.txt', 'students', 'student')
 load_users('professors.txt', 'professors', 'professor')
-
