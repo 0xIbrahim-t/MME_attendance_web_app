@@ -48,7 +48,7 @@ def student_dashboard():
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT subject FROM professors")
-        cursor.execute("SELECT name FROM students WHERE rollnumber = 'session['username']'")
+        cursor.execute("SELECT name FROM students WHERE rollnumber = %s", (session['username'])")
         result = cursor.fetchone()
         name = result[0]
         subjects = cursor.fetchall()
