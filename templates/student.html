@@ -15,10 +15,10 @@
                     </div>
                     <div class="card-body">
                         <h5>Welcome, {{ rollnumber }}</h5>
-                        <form action="/student/{{ subject }}" method="get">
+                        <form id="attendanceForm" method="get">
                             <div class="form-group">
                                 <label for="subject">Select Subject</label>
-                                <select name="subject" id="subject" class="form-control">
+                                <select name="subject" id="subject" class="form-control" onchange="updateFormAction()">
                                     {% for subject in subjects %}
                                         <option value="{{ subject[0] }}">{{ subject[0] }}</option>
                                     {% endfor %}
@@ -31,6 +31,16 @@
             </div>
         </div>
     </div>
+    <script>
+        function updateFormAction() {
+            var form = document.getElementById('attendanceForm');
+            var selectedSubject = document.getElementById('subject').value;
+            form.action = '/student/' + selectedSubject;
+        }
+        // Initialize form action on page load
+        document.addEventListener('DOMContentLoaded', (event) => {
+            updateFormAction();
+        });
+    </script>
 </body>
 </html>
-
