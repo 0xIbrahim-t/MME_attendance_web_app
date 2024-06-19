@@ -1,6 +1,6 @@
 # app.py
 import mysql.connector
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
