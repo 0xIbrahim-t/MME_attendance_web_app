@@ -40,8 +40,8 @@ def login():
                 return redirect(url_for('student_dashboard'))
             elif user_type == 'professor':
                 return redirect(url_for('professor_dashboard'))
-            else:
-                flash('Invalid username or password. Please try again.', 'danger')
+        else:
+            flash('Invalid username or password. Please try again.', 'danger')
     return redirect(url_for('index'))
 
 @app.route('/student')
