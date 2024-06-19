@@ -73,6 +73,11 @@ def view_attendance(subject):
         return render_template('attendance.html', subject=subject, total_classes=total_classes, absent_dates=[d[0] for d in absent_dates], attendance_percentage=attendance_percentage)
     return redirect(url_for('index'))
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
+
 @app.route('/professor')
 def professor_dashboard():
     if 'user_type' in session and session['user_type'] == 'professor':
