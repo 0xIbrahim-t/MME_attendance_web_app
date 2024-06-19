@@ -63,7 +63,7 @@ def view_attendance(subject):
         rollnumber = session['username']
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM attendance WHERE subject = %s", (rollnumber,))
+        cursor.execute("SELECT COUNT(*) FROM attendance WHERE subject = %s", (subject,))
         total_classes = cursor.fetchone()[0]
         cursor.execute("SELECT date FROM attendance WHERE rollnumber = %s AND subject = %s", (rollnumber, subject))
         absent_dates = cursor.fetchall()
