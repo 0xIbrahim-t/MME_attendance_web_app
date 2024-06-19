@@ -1,7 +1,7 @@
 # MME attendance web app
 
 ## Set Up Your Environment
-1. apt-get install python3 mysql-server
+1. apt-get install python3 mysql-server python3-pip
 2. pip install Flask mysql-connector-python werkzeug gunicorn
 
 ## Set up the database for attendance app
