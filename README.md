@@ -16,6 +16,7 @@
 >> FLUSH PRIVILEGES;
 >> 
 >> EXIT;
+>
 > python3 init_db.py
 >
 > python3 load_users.py
