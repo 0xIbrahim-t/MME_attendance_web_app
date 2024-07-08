@@ -65,7 +65,7 @@ def view_attendance(subject):
         rollnumber = session['username']
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM attendance WHERE subject = %s", (subject,))
+        cursor.execute("SELECT COUNT(*) FROM attendance WHERE subject = %s AND no = 1", (subject,))
         total_classes = cursor.fetchone()[0]
         cursor.execute("SELECT date FROM attendance WHERE rollnumber = %s AND subject = %s", (rollnumber, subject))
         absent_dates = cursor.fetchall()
@@ -99,9 +99,11 @@ def mark_attendance():
         subject = session['username']
         conn = get_db_connection()
         cursor = conn.cursor()
+        x = 0
         for absentee in absentees:
+            x += 1
             rollnumber = f"1121230{absentee.strip()}"
-            cursor.execute("INSERT INTO attendance (rollnumber, subject, date) VALUES (%s, %s, %s)", (rollnumber, subject, date))
+            cursor.execute("INSERT INTO attendance (rollnumber, subject, date, no) VALUES (%s, %s, %s, %s)", (rollnumber, subject, date, x))
         conn.commit()
         cursor.close()
         conn.close()
