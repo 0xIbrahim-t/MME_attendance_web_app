@@ -39,7 +39,8 @@ cursor.execute("""
         subject VARCHAR(50),
         date DATE,
         FOREIGN KEY (rollnumber) REFERENCES students(rollnumber),
-        FOREIGN KEY (subject) REFERENCES professors(subject)
+        FOREIGN KEY (subject) REFERENCES professors(subject),
+        no INT
     )
 """)
 
